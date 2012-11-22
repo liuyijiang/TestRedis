@@ -1,0 +1,123 @@
+1 redis geting start
+a  download redis_2_4_17.tar.gz
+b  tar xzfv redis_2_4_17.tar.gz
+c  make
+d  make install
+      在utils 文件夹下有个  install_server 可以配置redis 
+     在此版本解压后会有redis.conf 配置信息 
+      
+  http://koda.iteye.com/blog/1257616    
+      
+  -------------------------------------------------------------------------------    
+##########################################################################################  
+   一般情况是用src 文件夹下的（redis_server 启动 后面带配置文件 ）and (redis_cli 启动客户端)
+      1、redis-benchmark
+
+redis基准信息，redis服务器性能检测
+
+redis-benchmark -h localhost -p 6379 -c 100 -n 100000
+100个并发连接，100000个请求，检测host为localhost 端口为6379的redis服务器性能
+ 
+
+2、redis-cli
+
+redis-cli -h localhost -p 6380 monitor
+Dump all the received requests in real time;
+监控host为localhost，端口为6380，redis的连接及读写操作
+ 
+redis-cli -h localhost -p 6380 info
+Provide information and statistics about the server ;
+提供host为localhost，端口为6380，redis服务的统计信息
+
+
+#######################################################################################
+      
+      
+
+java 操作redis
+
+http://code.google.com/p/jredis/
+http://redis.io/commands
+http://redis.readthedocs.org/en/latest/index.html
+--------------------------------------------------------------
+常用命令
+keys * (查看所有key)
+randomkey (随即查看一个key)
+del <keyname> (删除一个key)
+ttl <keyname> (查看key的过期时间)
+expire <keyname> <time> (设置key的过期时间 time为秒数 过期后自动删除)（当 key 不存在或没有设置生存时间时，返回 -1 。否则，返回 key 的剩余生存时间(以秒为单位)。）
+exists key 若 key 存在，返回 1 ，否则返回 0 。
+MOVE -----(?)
+rename <keyname> <newkeyname> (修改key的name)
+PERSIST   key 的生存时间
+-----------------------server-----------------------------
+flushall (清除所有数据)
+SELECT index（切换到指定的数据库，数据库索引号 index 用数字值指定，以 0 作为起始索引值。默认使用 0 号数据库。
+
+
+
+-------------------hash---------------------------
+hset  一次一个 hset key <key value>
+hmset 一次多个 hmset key <key value>  <key value> 
+hget
+hmget 同上
+hgetall 查看所有
+Hincrby 整数加减
+hincrbyfloat 浮点数加减
+hkey 获得hash里的key
+HVALS 获得hash里的值
+
+
+---------------list --------
+LPUSHX
+LSET key index value (对 idnex 位置的的数据操作从1开始)
+LINDEX key index （返回index位置的value）
+LREM key count value
+count 的值可以是以下几种：
+    count > 0 : 从表头开始向表尾搜索，移除与 value 相等的元素，数量为 count 。
+    count < 0 : 从表尾开始向表头搜索，移除与 value 相等的元素，数量为 count 的绝对值。
+    count = 0 : 移除表中所有与 value 相等的值。
+
+
+-------------------set--------------------------
+scard 返回set中元素个数
+inster 返回两个set中的相同元素
+sunion 返回两个set中的所有元素无重复
+
+
+------------------------zset(有序set)------------
+ZADD key score member
+ZINCRBY key increment member (增加)
+
+
+
+http://vdisk.weibo.com/u/2036070420?mode=list&type=&page=2
+熟练掌握Java语言基础：异常处理、泛型、reflection、annotation；Java基本类库：io、util；
+ 熟悉Java高级特性和类库class loader、bytecode、nio、juc；
+ 操作系统页面 虚拟内存
+
+--------jedis 代码例子 code
+http://code.google.com/p/jredis/wiki/JRedisQuickStart
+https://github.com/alphazero/jredis/tree/1.2.n/examples/src/main/java/org/jredis/examples/
+https://github.com/alphazero/jredis 
+
+############################ redis user passwod #####
+在redis。conf文件中添加requirepass xxxxx
+cli 链接时输入auth xxxxx
+
+
+###############################  redis  集群  #################################################
+redis 集群
+在配置文件中slaveof <masterid> <master port>
+
+################################ redis 事务 ##########################################
+redis 事务 
+>multi
+.. （操作）
+..
+>exec (如同关系型数据库commit) 提交事务
+>discard （rollback） 回滚事务
+
+
+
+
