@@ -25,18 +25,18 @@ public class TestRedisSortSet {
     //ZADD 向有序集合添加数据
     public void addSortData(){
         //普通添加    	
-//		for(int i=0;i<100000; i++){
-//			int sum = (int)(Math.random()*500); 
-//			Ranking ranking = new Ranking();
-//			ranking.setName("第"+i+"号用户");
-//			ranking.setSum(sum);
-//			jedis.zadd("sortNumbers", sum, JSON.toJSONString(ranking).toString());
-//		}
+		for(int i=0;i<1000000; i++){
+			int sum = (int)(Math.random() * 500); 
+			Ranking ranking = new Ranking();
+			ranking.setName("第"+i+"号用户");
+			ranking.setSum(sum);
+			jedis.zadd("sortNumbers", sum, JSON.toJSONString(ranking).toString());
+		}
     	
-    	Ranking ranking = new Ranking();
-		ranking.setName("第10263号用户");
-		ranking.setSum(1000000);
-		jedis.zadd("sortNumbers", 1000000, JSON.toJSONString(ranking).toString());
+//    	Ranking ranking = new Ranking();
+//		ranking.setName("第10263号用户");
+//		ranking.setSum(1000000);
+//		jedis.zadd("sortNumbers", 1000000, JSON.toJSONString(ranking).toString());
     	
 		System.out.println("ok");
     }
@@ -110,12 +110,12 @@ public class TestRedisSortSet {
 	 */
 	public static void main(String[] args) {
 		TestRedisSortSet ts = new TestRedisSortSet();
-	    //ts.addSortData();
+	    ts.addSortData();
 		//ts.getSortData();
 		//ts.testZcard();
 		//ts.testZcount();
-		ts.testRank();
-		ts.testZSCORE();
+//		ts.testRank();
+//		ts.testZSCORE();
 	}
 
 }
