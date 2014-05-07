@@ -18,7 +18,7 @@ public class TestRedisSortSet {
 	private Jedis jedis = null;
 		
     public TestRedisSortSet(){
-		jedis = new Jedis("192.168.2.135",6379);
+		jedis = new Jedis("192.168.2.102",6379);
 
 	}
     
@@ -110,8 +110,8 @@ public class TestRedisSortSet {
 	 */
 	public static void main(String[] args) {
 		TestRedisSortSet ts = new TestRedisSortSet();
-	    ts.addSortData();
-		//ts.getSortData();
+	    //ts.addSortData();
+		ts.getSortData();
 		//ts.testZcard();
 		//ts.testZcount();
 //		ts.testRank();

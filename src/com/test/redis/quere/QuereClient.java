@@ -12,7 +12,7 @@ public class QuereClient extends Thread {
 	private Jedis jedis = null;
 	
 	public QuereClient(){
-		jedis = new Jedis("192.168.2.64",6379);
+		jedis = new Jedis("192.168.2.153",6379);
 	}
 
 	public void run(){
